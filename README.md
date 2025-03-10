@@ -1,6 +1,7 @@
 # MCP Shell Server
 
 [![codecov](https://codecov.io/gh/tumf/mcp-shell-server/branch/main/graph/badge.svg)](https://codecov.io/gh/tumf/mcp-shell-server)
+[![smithery badge](https://smithery.ai/badge/@diegofornalha/mcp-shell-server)](https://smithery.ai/server/@diegofornalha/mcp-shell-server)
 
 Um servidor seguro para execução de comandos shell que implementa o Protocolo de Contexto de Modelo (MCP). Este servidor permite a execução remota de comandos shell autorizados com suporte para entrada via stdin.
 
