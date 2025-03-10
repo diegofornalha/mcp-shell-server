@@ -2,19 +2,19 @@
 
 [![codecov](https://codecov.io/gh/tumf/mcp-shell-server/branch/main/graph/badge.svg)](https://codecov.io/gh/tumf/mcp-shell-server)
 
-A secure shell command execution server implementing the Model Context Protocol (MCP). This server allows remote execution of whitelisted shell commands with support for stdin input.
+Um servidor seguro para execução de comandos shell que implementa o Protocolo de Contexto de Modelo (MCP). Este servidor permite a execução remota de comandos shell autorizados com suporte para entrada via stdin.
 
-## Features
+## Funcionalidades
 
-* **Secure Command Execution**: Only whitelisted commands can be executed
-* **Standard Input Support**: Pass input to commands via stdin
-* **Comprehensive Output**: Returns stdout, stderr, exit status, and execution time
-* **Shell Operator Safety**: Validates commands after shell operators (; , &&, ||, |)
-* **Timeout Control**: Set maximum execution time for commands
+* **Execução Segura de Comandos**: Apenas comandos autorizados podem ser executados
+* **Suporte para Entrada Padrão**: Passa entrada para comandos via stdin
+* **Saída Abrangente**: Retorna stdout, stderr, código de saída e tempo de execução
+* **Segurança com Operadores Shell**: Valida comandos após operadores shell (;, &&, ||, |)
+* **Controle de Timeout**: Define tempo máximo de execução para comandos
 
-## MCP client setting in your Claude.app
+## Configuração do cliente MCP no seu Claude.app
 
-### Published version
+### Versão publicada
 
 ```shell
 code ~/Library/Application\ Support/Claude/claude_desktop_config.json
@@ -36,9 +36,9 @@ code ~/Library/Application\ Support/Claude/claude_desktop_config.json
 }
 ```
 
-### Local version
+### Versão local
 
-#### Configuration
+#### Configuração
 
 ```shell
 code ~/Library/Application\ Support/Claude/claude_desktop_config.json
@@ -63,53 +63,53 @@ code ~/Library/Application\ Support/Claude/claude_desktop_config.json
 }
 ```
 
-#### Installation
+#### Instalação
 
 ```bash
 pip install mcp-shell-server
 ```
 
-## Usage
+## Uso
 
-### Starting the Server
+### Iniciando o Servidor
 
 ```bash
 ALLOW_COMMANDS="ls,cat,echo" uvx mcp-shell-server
-# Or using the alias
+# Ou usando o alias
 ALLOWED_COMMANDS="ls,cat,echo" uvx mcp-shell-server
 ```
 
-The `ALLOW_COMMANDS` (or its alias `ALLOWED_COMMANDS` ) environment variable specifies which commands are allowed to be executed. Commands can be separated by commas with optional spaces around them.
+A variável de ambiente `ALLOW_COMMANDS` (ou seu alias `ALLOWED_COMMANDS`) especifica quais comandos podem ser executados. Comandos podem ser separados por vírgulas com espaços opcionais ao redor deles.
 
-Valid formats for ALLOW_COMMANDS or ALLOWED_COMMANDS:
+Formatos válidos para ALLOW_COMMANDS ou ALLOWED_COMMANDS:
 
 ```bash
-ALLOW_COMMANDS="ls,cat,echo"          # Basic format
-ALLOWED_COMMANDS="ls ,echo, cat"      # With spaces (using alias)
-ALLOW_COMMANDS="ls,  cat  , echo"     # Multiple spaces
+ALLOW_COMMANDS="ls,cat,echo"          # Formato básico
+ALLOWED_COMMANDS="ls ,echo, cat"      # Com espaços (usando alias)
+ALLOW_COMMANDS="ls,  cat  , echo"     # Múltiplos espaços
 ```
 
-### Request Format
+### Formato da Requisição
 
 ```python
-# Basic command execution
+# Execução básica de comando
 {
     "command": ["ls", "-l", "/tmp"]
 }
 
-# Command with stdin input
+# Comando com entrada stdin
 {
     "command": ["cat"],
     "stdin": "Hello, World!"
 }
 
-# Command with timeout
+# Comando com timeout
 {
     "command": ["long-running-process"],
-    "timeout": 30  # Maximum execution time in seconds
+    "timeout": 30  # Tempo máximo de execução em segundos
 }
 
-# Command with working directory and timeout
+# Comando com diretório de trabalho e timeout
 {
     "command": ["grep", "-r", "pattern"],
     "directory": "/path/to/search",
@@ -117,88 +117,88 @@ ALLOW_COMMANDS="ls,  cat  , echo"     # Multiple spaces
 }
 ```
 
-### Response Format
+### Formato da Resposta
 
-Successful response:
+Resposta de sucesso:
 
 ```json
 {
-    "stdout": "command output",
+    "stdout": "saída do comando",
     "stderr": "",
     "status": 0,
     "execution_time": 0.123
 }
 ```
 
-Error response:
+Resposta de erro:
 
 ```json
 {
-    "error": "Command not allowed: rm",
+    "error": "Comando não permitido: rm",
     "status": 1,
     "stdout": "",
-    "stderr": "Command not allowed: rm",
+    "stderr": "Comando não permitido: rm",
     "execution_time": 0
 }
 ```
 
-## Security
+## Segurança
 
-The server implements several security measures:
+O servidor implementa várias medidas de segurança:
 
-1. **Command Whitelisting**: Only explicitly allowed commands can be executed
-2. **Shell Operator Validation**: Commands after shell operators (;, &&, ||, |) are also validated against the whitelist
-3. **No Shell Injection**: Commands are executed directly without shell interpretation
+1. **Lista Branca de Comandos**: Apenas comandos explicitamente permitidos podem ser executados
+2. **Validação de Operadores Shell**: Comandos após operadores shell (;, &&, ||, |) também são validados contra a lista branca
+3. **Sem Injeção de Shell**: Comandos são executados diretamente sem interpretação do shell
 
-## Development
+## Desenvolvimento
 
-### Setting up Development Environment
+### Configurando o Ambiente de Desenvolvimento
 
-1. Clone the repository
+1. Clone o repositório
 
 ```bash
 git clone https://github.com/yourusername/mcp-shell-server.git
 cd mcp-shell-server
 ```
 
-2. Install dependencies including test requirements
+2. Instale dependências incluindo requisitos de teste
 
 ```bash
 pip install -e ".[test]"
 ```
 
-### Running Tests
+### Executando Testes
 
 ```bash
 pytest
 ```
 
-## API Reference
+## Referência da API
 
-### Request Arguments
+### Argumentos da Requisição
 
-| Field     | Type       | Required | Description                                   |
-|-----------|------------|----------|-----------------------------------------------|
-| command   | string[]   | Yes      | Command and its arguments as array elements   |
-| stdin     | string     | No       | Input to be passed to the command            |
-| directory | string     | No       | Working directory for command execution       |
-| timeout   | integer    | No       | Maximum execution time in seconds             |
+| Campo     | Tipo       | Obrigatório | Descrição                                    |
+|-----------|------------|-------------|----------------------------------------------|
+| command   | string[]   | Sim         | Comando e seus argumentos como elementos de array |
+| stdin     | string     | Não         | Entrada a ser passada para o comando         |
+| directory | string     | Não         | Diretório de trabalho para execução do comando |
+| timeout   | integer    | Não         | Tempo máximo de execução em segundos         |
 
-### Response Fields
+### Campos da Resposta
 
-| Field           | Type    | Description                                |
+| Campo          | Tipo    | Descrição                                  |
 |----------------|---------|---------------------------------------------|
-| stdout         | string  | Standard output from the command           |
-| stderr         | string  | Standard error output from the command     |
-| status         | integer | Exit status code                           |
-| execution_time | float   | Time taken to execute (in seconds)         |
-| error          | string  | Error message (only present if failed)     |
+| stdout         | string  | Saída padrão do comando                    |
+| stderr         | string  | Saída de erro do comando                   |
+| status         | integer | Código de status de saída                  |
+| execution_time | float   | Tempo gasto para executar (em segundos)    |
+| error          | string  | Mensagem de erro (presente apenas se falhou) |
 
-## Requirements
+## Requisitos
 
-* Python 3.11 or higher
+* Python 3.11 ou superior
 * mcp>=1.1.0
 
-## License
+## Licença
 
-MIT License - See LICENSE file for details
+Licença MIT - Veja o arquivo LICENSE para detalhes

@@ -1,65 +1,66 @@
-# Changelog
+# Registro de Alterações
 
-All notable changes to this project will be documented in this file.
+Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+e este projeto adere ao [Versionamento Semântico](https://semver.org/spec/v2.0.0.html).
 
 ## [1.0.3] - 2024-12-23
 
-### Added
-- Interactive shell support for command execution
+### Adicionado
+- Suporte a shell interativo para execução de comandos
 
-### Changed
-- Improved login shell detection mechanism
-- Enhanced process cleanup on error
+### Alterado
+- Mecanismo de detecção de shell de login aprimorado
+- Limpeza de processos aprimorada em caso de erro
 
-### Fixed
-- Improved test reliability and coverage
-- Fixed pipeline timeout test cases
-- Improved redirection handling and tests
+### Corrigido
+- Melhorada a confiabilidade e cobertura de testes
+- Corrigidos casos de teste de timeout de pipeline
+- Melhorado o tratamento de redirecionamento e testes
+
 ## [1.0.2] - 2024-12-18
 
-### Added
-- Input/output redirection support in ShellExecutor
-- Pipeline execution capabilities
-- Process communication timeout handling
-- Directory path validation
+### Adicionado
+- Suporte a redirecionamento de entrada/saída no ShellExecutor
+- Capacidades de execução de pipeline
+- Tratamento de timeout na comunicação de processos
+- Validação de caminho de diretórios
 
-### Changed
-- Improved process cleanup mechanisms
-- Enhanced test configuration and organization
-- Standardized error handling across the codebase
-- Updated MCP dependency to version 1.1.2
+### Alterado
+- Mecanismos de limpeza de processos aprimorados
+- Organização e configuração de testes aprimoradas
+- Padronização do tratamento de erros em todo o código
+- Atualizada a dependência do MCP para versão 1.1.2
 
-### Fixed
-- Proper timeout handling in process communication
-- Edge case handling in shell command execution
-- Warning suppression for cleaner output
-- Pipeline command parsing and execution
+### Corrigido
+- Tratamento adequado de timeout na comunicação de processos
+- Tratamento de casos extremos na execução de comandos shell
+- Supressão de avisos para saída mais limpa
+- Análise e execução de comandos de pipeline
 
-### Security
-- Enhanced directory permission validation
-- Improved command validation and sanitization
+### Segurança
+- Validação aprimorada de permissões de diretórios
+- Validação e sanitização de comandos aprimorada
 
 ## [1.0.1] - 2024-12-12
 
-### Added
-- Server version display in startup logs
+### Adicionado
+- Exibição da versão do servidor nos logs de inicialização
 
-### Changed
-- Updated version management system
+### Alterado
+- Sistema de gerenciamento de versão atualizado
 
 ## [1.0.0] - 2024-12-12
 
-### Added
-- Initial release
-- Basic shell command execution via MCP protocol
-- Command whitelisting functionality
-- Standard input support
-- Command execution timeout control
-- Working directory specification
-- Comprehensive output handling (stdout, stderr, status)
-- Shell operator validation
-- Basic security measures
-- GitHub Actions workflows for testing and publishing
+### Adicionado
+- Lançamento inicial
+- Execução básica de comandos shell via protocolo MCP
+- Funcionalidade de lista branca de comandos
+- Suporte a entrada padrão
+- Controle de timeout de execução de comandos
+- Especificação de diretório de trabalho
+- Tratamento abrangente de saída (stdout, stderr, status)
+- Validação de operadores shell
+- Medidas básicas de segurança
+- Fluxos de trabalho do GitHub Actions para testes e publicação
